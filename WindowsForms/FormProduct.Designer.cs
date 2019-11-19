@@ -38,13 +38,19 @@
             this.textBoxName = new System.Windows.Forms.TextBox();
             this.buttonAdd = new System.Windows.Forms.Button();
             this.controlListBox = new ControlLibrary.ControlListBox();
-            this.vivodTableComponent = new Lab1ComponentKate.VivodTableComponent();
-            this.diagrammaExcelComponent = new Lab1ComponentKate.DiagrammaExcelComponent(this.components);
             this.deserialization = new ControlLibrary.Deserialization(this.components);
             this.excelReporterComponent = new WindowsFormsControlLibraryComponentSansiel.ExcelReporterComponent(this.components);
             this.buttonDiagram = new System.Windows.Forms.Button();
             this.buttonDeserialization = new System.Windows.Forms.Button();
             this.buttonExcel = new System.Windows.Forms.Button();
+            this.vivodTableComponent = new Lab1ComponentKate.VivodTableComponent();
+            this.diagrammaExcelComponent = new Lab1ComponentKate.DiagrammaExcelComponent(this.components);
+            this.vivodTableComponent1 = new Lab1ComponentKate.VivodTableComponent();
+            this.createBackUpComponent1 = new WindowsFormsControlLibraryComponentSansiel.CreateBackUpComponent(this.components);
+            this.buttonBackUp = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // enterFieldControlDate
@@ -128,17 +134,9 @@
             this.controlListBox.TabIndex = 8;
             this.controlListBox.SelectedIndexChanged += new ControlLibrary.ControlListBox.ListBoxEventHandler(this.controlListBox_SelectedIndexChanged);
             // 
-            // vivodTableComponent
-            // 
-            this.vivodTableComponent.Location = new System.Drawing.Point(292, -6);
-            this.vivodTableComponent.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.vivodTableComponent.Name = "vivodTableComponent";
-            this.vivodTableComponent.Size = new System.Drawing.Size(517, 293);
-            this.vivodTableComponent.TabIndex = 9;
-            // 
             // excelReporterComponent
             // 
-            this.excelReporterComponent.FieldType = null;
+            this.excelReporterComponent.FieldType = "ProductName ProductUnit ProductData";
             // 
             // buttonDiagram
             // 
@@ -170,11 +168,65 @@
             this.buttonExcel.UseVisualStyleBackColor = true;
             this.buttonExcel.Click += new System.EventHandler(this.buttonExcel_Click);
             // 
+            // vivodTableComponent
+            // 
+            this.vivodTableComponent.Location = new System.Drawing.Point(292, -6);
+            this.vivodTableComponent.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.vivodTableComponent.Name = "vivodTableComponent";
+            this.vivodTableComponent.Size = new System.Drawing.Size(517, 293);
+            this.vivodTableComponent.TabIndex = 9;
+            // 
+            // vivodTableComponent1
+            // 
+            this.vivodTableComponent1.Location = new System.Drawing.Point(15, 323);
+            this.vivodTableComponent1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.vivodTableComponent1.Name = "vivodTableComponent1";
+            this.vivodTableComponent1.Size = new System.Drawing.Size(517, 293);
+            this.vivodTableComponent1.TabIndex = 13;
+            // 
+            // buttonBackUp
+            // 
+            this.buttonBackUp.Location = new System.Drawing.Point(653, 308);
+            this.buttonBackUp.Name = "buttonBackUp";
+            this.buttonBackUp.Size = new System.Drawing.Size(75, 23);
+            this.buttonBackUp.TabIndex = 14;
+            this.buttonBackUp.Text = "BuckUp";
+            this.buttonBackUp.UseVisualStyleBackColor = true;
+            this.buttonBackUp.Click += new System.EventHandler(this.buttonBackUp_Click);
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(815, 309);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(123, 22);
+            this.textBox1.TabIndex = 15;
+            this.textBox1.Text = "D:\\backUp.json";
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(815, 338);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(123, 22);
+            this.textBox2.TabIndex = 16;
+            this.textBox2.Text = "D:\\diagramm";
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(815, 366);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(123, 22);
+            this.textBox3.TabIndex = 17;
+            this.textBox3.Text = "D:\\book1";
+            // 
             // FormProduct
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(862, 359);
+            this.ClientSize = new System.Drawing.Size(974, 618);
+            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.buttonBackUp);
             this.Controls.Add(this.buttonExcel);
             this.Controls.Add(this.buttonDeserialization);
             this.Controls.Add(this.buttonDiagram);
@@ -188,6 +240,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.enterFieldControlDate);
             this.Controls.Add(this.controlListBox);
+            this.Controls.Add(this.vivodTableComponent1);
             this.Name = "FormProduct";
             this.Text = "FormProduct";
             this.Load += new System.EventHandler(this.FormProduct_Load);
@@ -214,6 +267,12 @@
         private System.Windows.Forms.Button buttonDiagram;
         private System.Windows.Forms.Button buttonDeserialization;
         private System.Windows.Forms.Button buttonExcel;
+        private Lab1ComponentKate.VivodTableComponent vivodTableComponent1;
+        private WindowsFormsControlLibraryComponentSansiel.CreateBackUpComponent createBackUpComponent1;
+        private System.Windows.Forms.Button buttonBackUp;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBox3;
     }
 }
 

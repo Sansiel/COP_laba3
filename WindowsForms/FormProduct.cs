@@ -1,4 +1,5 @@
-﻿using ProdDAL.BindingModels;
+﻿using ControlLibrary;
+using ProdDAL.BindingModels;
 using ProdDAL.Interfaces;
 using ProdDAL.ViewModels;
 using System;
@@ -63,7 +64,7 @@ namespace WindowsForms
                 });
                 MessageBox.Show("Сохранение прошло успешно", "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 DialogResult = DialogResult.OK;
-                LoadData(); ;
+                LoadData();
             }
             catch (Exception ex)
             {
@@ -88,20 +89,50 @@ namespace WindowsForms
 
         private void buttonDiagram_Click(object sender, EventArgs e)
         {
-            List<ProductViewModel> list = service.GetList();
-            List<string> titles = new List<string> { "Название", "Юнит", "Кол-во", "Дата" };
-            List<string> fields = new List<string> { "ProductName", "ProductUnit", "ProductAmount", "ProductData" };
-            diagrammaExcelComponent.CreateDiagram("D:/test", list.Select(x => (object)x).ToList(), titles, fields);
+            SaveFileDialog path = new SaveFileDialog { };
+            if (path.ShowDialog() == DialogResult.OK)
+            {
+                List<ProductViewModel> list = service.GetList();
+                List<string> titles = new List<string> { "Количество каждого Unit", "Unit", "Кол-во" };
+                List<string> fields = new List<string> { "ProductUnit", "ProductAmount" };
+                diagrammaExcelComponent.CreateDiagram(@path.FileName, list.Select(x => (object)x).ToList(), fields, titles);
+            }
         }
 
         private void buttonDeserialization_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                OpenFileDialog path = new OpenFileDialog { };
+                if (path.ShowDialog() == DialogResult.OK)
+                {
+                    var list1 = deserialization.Deserialize<ProductViewModel>(@path.FileName);
+                    List<string> titles = new List<string> { "Название", "Юнит", "Кол-во", "Дата" };
+                    List<string> fields = new List<string> { "ProductName", "ProductUnit", "ProductAmount", "ProductData" };
+                    vivodTableComponent1.LoadEnumerationName(list1.Select(x => (object)x).ToList(), titles, fields);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void buttonExcel_Click(object sender, EventArgs e)
         {
+            SaveFileDialog path = new SaveFileDialog { };
+            if (path.ShowDialog() == DialogResult.OK)
+            {
+                List<ProductViewModel> list = service.GetList();
+                excelReporterComponent.CreateExcelReport(list, @path.FileName, false);
+            }
+        }
 
+        private void buttonBackUp_Click(object sender, EventArgs e)
+        {
+            string path = textBox1.Text;
+            List<ProductViewModel> list = service.GetList();
+            createBackUpComponent1.BackUp(list, @path);
         }
     }
 }
