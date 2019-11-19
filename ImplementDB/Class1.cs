@@ -4,10 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace COP_laba3
+namespace ImplementDB
 {
-    public class Class1
+    class Class1
     {
-
+        static void Main()
+        {
+        }
     }
 }

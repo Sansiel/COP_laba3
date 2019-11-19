@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace COP_laba3
+namespace ProdDAL
 {
     public class Class1
     {
-
     }
 }
