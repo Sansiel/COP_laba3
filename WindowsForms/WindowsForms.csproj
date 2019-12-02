@@ -98,6 +98,7 @@
     <Compile Include="FormProduct.Designer.cs">
       <DependentUpon>FormProduct.cs</DependentUpon>
     </Compile>
+    <Compile Include="PaternDemonstration.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FormProduct.resx">
@@ -134,6 +135,10 @@
     <ProjectReference Include="..\ProdDAL\ProdDAL.csproj">
       <Project>{e74f0ab5-d1ea-42b7-99f6-8b40409bd656}</Project>
       <Name>ProdDAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ProdModel\ProdModel.csproj">
+      <Project>{2B102708-8334-4501-9F60-DE27D1D4FDE2}</Project>
+      <Name>ProdModel</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

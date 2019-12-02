@@ -12,6 +12,5 @@ namespace ProdModel
         public string ProductUnit { get; set; }
         public int ProductAmount { get; set; }
         public DateTime ProductData { get; set; }
-
     }
 }

@@ -2,6 +2,7 @@
 using ProdDAL.BindingModels;
 using ProdDAL.Interfaces;
 using ProdDAL.ViewModels;
+using ProdModel;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -28,6 +29,8 @@ namespace WindowsForms
 
         private readonly IProductService service;
 
+        ProductFactory factory;
+
         public FormProduct(IProductService service)
         {
             InitializeComponent();
@@ -37,7 +40,9 @@ namespace WindowsForms
 
         private void controlListBox_SelectedIndexChanged(int index, object selected)
         {
-
+            if (controlListBox.Selected.ToString().Equals("KG")) factory = new KgFactory();
+            if (controlListBox.Selected.ToString().Equals("Funt")) factory = new FuntFactory();
+            if (controlListBox.Selected.ToString().Equals("Gramm")) factory = new GrammFactory();
         }
 
         private void FormProduct_Load(object sender, EventArgs e)
@@ -52,13 +57,14 @@ namespace WindowsForms
                 MessageBox.Show("Заполните Name", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+            PaternDemonstration prod = new PaternDemonstration(factory);
 
             try
             {
                 service.AddElement(new ProductBindingModel
                 {
                     ProductName = textBoxName.Text,
-                    ProductUnit = controlListBox.Selected.ToString(),
+                    ProductUnit = prod.Run(),
                     ProductAmount = Int32.Parse(textBoxAmount.Text),
                     ProductData = DateTime.ParseExact(enterFieldControlDate.TemplateText, "dd.MM.yyyy", null)
                 });

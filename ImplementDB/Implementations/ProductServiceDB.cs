@@ -60,7 +60,7 @@ namespace ImplementDB.Implementations
                     {
                         throw new Exception("Уже есть изделие с таким названием");
                     }
-                    element = new Product
+                    element = new Product ()
                     {
                         ProductName = model.ProductName,
                         ProductUnit = model.ProductUnit,

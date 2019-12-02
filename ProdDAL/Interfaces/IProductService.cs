@@ -1,5 +1,6 @@
 ﻿using ProdDAL.BindingModels;
 using ProdDAL.ViewModels;
+using ProdModel;
 using System.Collections.Generic;
 
 namespace ProdDAL.Interfaces
