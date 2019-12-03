@@ -1,16 +1,13 @@
-﻿using ControlLibrary;
+﻿using PlugIn;
 using ProdDAL.BindingModels;
 using ProdDAL.Interfaces;
 using ProdDAL.ViewModels;
-using ProdModel;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
+using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Reflection;
 using System.Windows.Forms;
 using Unity;
 
@@ -22,7 +19,7 @@ namespace WindowsForms
         Gramm,
     }
 
-    public partial class FormProduct : Form
+    public partial class FormProduct : Form, IPluginHost
     {
         [Dependency]
         public new IUnityContainer Container { get; set; }
@@ -30,6 +27,8 @@ namespace WindowsForms
         private readonly IProductService service;
 
         ProductFactory factory;
+
+        List<IPlugin> _plugins;
 
         public FormProduct(IProductService service)
         {
@@ -48,6 +47,8 @@ namespace WindowsForms
         private void FormProduct_Load(object sender, EventArgs e)
         {
             LoadData();
+            this.LoadPlugins(Application.StartupPath);
+            this.AddPluginsItems();
         }
 
         private void buttonAdd_Click(object sender, EventArgs e)
@@ -139,6 +140,70 @@ namespace WindowsForms
             string path = textBox1.Text;
             List<ProductViewModel> list = service.GetList();
             createBackUpComponent1.BackUp(list, @path);
+        }
+
+        private void LoadPlugins(string path)
+        {
+            string[] pluginFiles = Directory.GetFiles(path, "*.dll");
+            this._plugins = new List<IPlugin>();
+
+            foreach (string pluginPath in pluginFiles)
+            {
+                Type objType = null;
+                try
+                {
+                    // пытаемся загрузить библиотеку
+                    Assembly assembly = Assembly.LoadFrom(pluginPath);
+                    if (assembly != null)
+                    {
+                        objType = assembly.GetType(Path.GetFileNameWithoutExtension(pluginPath) + ".PlugIn");
+                    }
+                }
+                catch
+                {
+                    continue;
+                }
+                try
+                {
+                    if (objType != null)
+                    {
+                        this._plugins.Add((IPlugin)Activator.CreateInstance(objType));
+                        this._plugins[this._plugins.Count - 1].Host = this;
+                    }
+                }
+                catch
+                {
+                    continue;
+                }
+            }
+        }
+
+        private void AddPluginsItems()
+        {
+            this.lvPlugins.Items.Clear();
+            foreach (IPlugin plugin in this._plugins)
+            {
+                if (plugin == null)
+                {
+                    continue;
+                }
+                this.lvPlugins.Items.Add(plugin.DisplayPluginName);
+                this.lvPlugins.Items[this.lvPlugins.Items.Count - 1].SubItems.Add(plugin.Version.ToString());
+                this.lvPlugins.Items[this.lvPlugins.Items.Count - 1].SubItems.Add(plugin.Author);
+            }
+        }
+        public bool Register(IPlugin plug)
+        {
+            return true;
+        }
+
+        private void lvPlugins_DoubleClick(object sender, EventArgs e)
+        {
+            if (this.lvPlugins.SelectedItems.Count > 0)
+            {
+                int selectedIndex = this.lvPlugins.SelectedItems[0].Index;
+                this._plugins[selectedIndex].Show();
+            }
         }
     }
 }

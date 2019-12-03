@@ -52,6 +52,7 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.comboBox = new System.Windows.Forms.ComboBox();
+            this.lvPlugins = new System.Windows.Forms.ListView();
             this.SuspendLayout();
             // 
             // enterFieldControlDate
@@ -227,11 +228,21 @@
             this.comboBox.Size = new System.Drawing.Size(144, 24);
             this.comboBox.TabIndex = 18;
             // 
+            // lvPlugins
+            // 
+            this.lvPlugins.Location = new System.Drawing.Point(553, 356);
+            this.lvPlugins.Name = "lvPlugins";
+            this.lvPlugins.Size = new System.Drawing.Size(398, 127);
+            this.lvPlugins.TabIndex = 21;
+            this.lvPlugins.UseCompatibleStateImageBehavior = false;
+            this.lvPlugins.DoubleClick += new System.EventHandler(this.lvPlugins_DoubleClick);
+            // 
             // FormProduct
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(974, 618);
+            this.Controls.Add(this.lvPlugins);
             this.Controls.Add(this.comboBox);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.textBox2);
@@ -284,6 +295,7 @@
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.ComboBox comboBox;
+        private System.Windows.Forms.ListView lvPlugins;
     }
 }
 

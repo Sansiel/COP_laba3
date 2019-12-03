@@ -132,6 +132,10 @@
       <Project>{7effa5c5-7748-4e7e-9905-8dcc239ba1bf}</Project>
       <Name>ImplementDB</Name>
     </ProjectReference>
+    <ProjectReference Include="..\PlugIn\PlugIn.csproj">
+      <Project>{B6E650AA-391F-4E89-9986-22D96253E359}</Project>
+      <Name>PlugIn</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ProdDAL\ProdDAL.csproj">
       <Project>{e74f0ab5-d1ea-42b7-99f6-8b40409bd656}</Project>
       <Name>ProdDAL</Name>
