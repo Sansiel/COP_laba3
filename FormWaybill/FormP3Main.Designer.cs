@@ -30,6 +30,7 @@
         {
             this.tbInfo = new System.Windows.Forms.TextBox();
             this.buttonFormWaybill = new System.Windows.Forms.Button();
+            this.buttonPrint = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // tbInfo
@@ -50,11 +51,22 @@
             this.buttonFormWaybill.UseVisualStyleBackColor = true;
             this.buttonFormWaybill.Click += new System.EventHandler(this.buttonFormWaybill_Click);
             // 
+            // buttonPrint
+            // 
+            this.buttonPrint.Location = new System.Drawing.Point(33, 254);
+            this.buttonPrint.Name = "buttonPrint";
+            this.buttonPrint.Size = new System.Drawing.Size(212, 23);
+            this.buttonPrint.TabIndex = 2;
+            this.buttonPrint.Text = "Print";
+            this.buttonPrint.UseVisualStyleBackColor = true;
+            this.buttonPrint.Click += new System.EventHandler(this.buttonPrint_Click);
+            // 
             // FormP3Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(281, 253);
+            this.ClientSize = new System.Drawing.Size(281, 285);
+            this.Controls.Add(this.buttonPrint);
             this.Controls.Add(this.buttonFormWaybill);
             this.Controls.Add(this.tbInfo);
             this.Name = "FormP3Main";
@@ -69,5 +81,6 @@
 
         private System.Windows.Forms.TextBox tbInfo;
         private System.Windows.Forms.Button buttonFormWaybill;
+        private System.Windows.Forms.Button buttonPrint;
     }
 }

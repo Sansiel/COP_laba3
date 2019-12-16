@@ -25,6 +25,10 @@ namespace FormWaybill
         {
             string path = "D://cop";
             CreateExcelReport(input, path);
+
+            FormP3Main frm = new FormP3Main(this);
+            frm.ShowDialog();
+
             return "";
         }
 

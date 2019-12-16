@@ -1,9 +1,7 @@
-﻿using IronXL;
-using PlugIn;
+﻿using PlugIn;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Windows.Forms;
+using Excel = Microsoft.Office.Interop.Excel;
 
 namespace FormWaybill
 {
@@ -30,6 +28,34 @@ namespace FormWaybill
         {
             DialogResult = DialogResult.Cancel;
             Close();
+        }
+
+        private void buttonPrint_Click(object sender, EventArgs e)
+        {
+            Excel.Application excelApp = new Excel.Application();
+
+            Excel.Workbook wb = excelApp.Workbooks.Open(
+                @"D:\\cop.xlsx",
+                Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing,
+                Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing,
+                Type.Missing, Type.Missing, Type.Missing, Type.Missing);
+
+            Excel.Worksheet ws = (Excel.Worksheet)wb.Worksheets[1];
+
+            var printers = System.Drawing.Printing.PrinterSettings.InstalledPrinters;
+
+            int printerIndex = 0;
+
+            foreach (String s in printers)
+            {
+                if (s.Equals("Name of Printer"))
+                {
+                    break;
+                }
+                printerIndex++;
+            }
+
+            ws.PrintOut(1, 2, 1, false, printers[printerIndex], true, false, Type.Missing);
         }
     }
 }
