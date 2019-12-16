@@ -1,4 +1,6 @@
-﻿namespace PlugIn
+﻿using System.Collections.Generic;
+
+namespace PlugIn
 {
     public interface IPlugin
     {
@@ -10,6 +12,7 @@
         IPluginHost Host { get; set; } // ссылка на главную форму
 
         void Show(); // отображает форму
+        string Activate<T>(List<T> input);
     }
     public interface IPluginHost
     {

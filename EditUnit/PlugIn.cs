@@ -1,4 +1,5 @@
 ﻿using PlugIn;
+using System.Collections.Generic;
 
 namespace EditUnit
 {
@@ -18,7 +19,14 @@ namespace EditUnit
         frm.ShowDialog();
     }
 
-    public IPluginHost Host
+        public string Activate<T>(List<T> input)
+        {
+            FormP1Main frm = new FormP1Main(this);
+            frm.ShowDialog();
+            return frm.Selected;
+        }
+
+        public IPluginHost Host
     {
         get { return _Host; }
         set

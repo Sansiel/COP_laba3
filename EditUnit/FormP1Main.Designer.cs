@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.tbInfo = new System.Windows.Forms.TextBox();
+            this.listBox = new System.Windows.Forms.ListBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // tbInfo
@@ -39,11 +41,33 @@
             this.tbInfo.Size = new System.Drawing.Size(233, 198);
             this.tbInfo.TabIndex = 0;
             // 
+            // listBox
+            // 
+            this.listBox.FormattingEnabled = true;
+            this.listBox.ItemHeight = 16;
+            this.listBox.Location = new System.Drawing.Point(293, 22);
+            this.listBox.Name = "listBox";
+            this.listBox.Size = new System.Drawing.Size(154, 196);
+            this.listBox.TabIndex = 1;
+            this.listBox.SelectedIndexChanged += new System.EventHandler(this.listBox_SelectedIndexChanged);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(31, 239);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "Cancel";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // FormP1Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(282, 288);
+            this.ClientSize = new System.Drawing.Size(484, 274);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.listBox);
             this.Controls.Add(this.tbInfo);
             this.Name = "FormP1Main";
             this.Text = "FormP1Main";
@@ -56,5 +80,7 @@
         #endregion
 
         private System.Windows.Forms.TextBox tbInfo;
+        private System.Windows.Forms.ListBox listBox;
+        private System.Windows.Forms.Button button1;
     }
 }

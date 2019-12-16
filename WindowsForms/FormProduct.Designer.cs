@@ -53,6 +53,7 @@
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.comboBox = new System.Windows.Forms.ComboBox();
             this.lvPlugins = new System.Windows.Forms.ListView();
+            this.Waybill = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // enterFieldControlDate
@@ -237,11 +238,22 @@
             this.lvPlugins.UseCompatibleStateImageBehavior = false;
             this.lvPlugins.DoubleClick += new System.EventHandler(this.lvPlugins_DoubleClick);
             // 
+            // Waybill
+            // 
+            this.Waybill.Location = new System.Drawing.Point(876, 323);
+            this.Waybill.Name = "Waybill";
+            this.Waybill.Size = new System.Drawing.Size(75, 23);
+            this.Waybill.TabIndex = 22;
+            this.Waybill.Text = "Waybill";
+            this.Waybill.UseVisualStyleBackColor = true;
+            this.Waybill.Click += new System.EventHandler(this.Waybill_Click);
+            // 
             // FormProduct
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(974, 618);
+            this.Controls.Add(this.Waybill);
             this.Controls.Add(this.lvPlugins);
             this.Controls.Add(this.comboBox);
             this.Controls.Add(this.textBox3);
@@ -296,6 +308,7 @@
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.ComboBox comboBox;
         private System.Windows.Forms.ListView lvPlugins;
+        private System.Windows.Forms.Button Waybill;
     }
 }
 

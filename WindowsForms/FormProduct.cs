@@ -13,7 +13,8 @@ using Unity;
 
 namespace WindowsForms
 {
-    public enum x {
+    public enum x
+    {
         KG,
         Funt,
         Gramm,
@@ -29,12 +30,16 @@ namespace WindowsForms
         ProductFactory factory;
 
         List<IPlugin> _plugins;
+        private string PName;
+
+        public List<ProductViewModel> waybill_list;
 
         public FormProduct(IProductService service)
         {
             InitializeComponent();
             controlListBox.SetList(typeof(x));
             this.service = service;
+            waybill_list = service.GetList();
         }
 
         private void controlListBox_SelectedIndexChanged(int index, object selected)
@@ -47,13 +52,13 @@ namespace WindowsForms
         private void FormProduct_Load(object sender, EventArgs e)
         {
             LoadData();
-            this.LoadPlugins(Application.StartupPath);
+            this.LoadPlugins("C:\\Users\\User\\source\\repos\\COP_laba3\\plugins\\");
             this.AddPluginsItems();
         }
 
         private void buttonAdd_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(textBoxName.Text))
+            if (string.IsNullOrEmpty(PName))
             {
                 MessageBox.Show("Заполните Name", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -64,7 +69,7 @@ namespace WindowsForms
             {
                 service.AddElement(new ProductBindingModel
                 {
-                    ProductName = textBoxName.Text,
+                    ProductName = PName,
                     ProductUnit = prod.Run(),
                     ProductAmount = Int32.Parse(textBoxAmount.Text),
                     ProductData = DateTime.ParseExact(enterFieldControlDate.TemplateText, "dd.MM.yyyy", null)
@@ -192,6 +197,7 @@ namespace WindowsForms
                 this.lvPlugins.Items[this.lvPlugins.Items.Count - 1].SubItems.Add(plugin.Author);
             }
         }
+
         public bool Register(IPlugin plug)
         {
             return true;
@@ -204,6 +210,24 @@ namespace WindowsForms
                 int selectedIndex = this.lvPlugins.SelectedItems[0].Index;
                 this._plugins[selectedIndex].Show();
             }
+        }
+
+        private void Waybill_Click(object sender, EventArgs e)
+        {
+            List<ProductViewModel> list = service.GetList();
+            //int selectedIndex = this.lvPlugins.SelectedItems[0].Index;
+            string fp = this._plugins[0].Activate(list);
+            string sp = this._plugins[2].Activate(list);
+            string thp = this._plugins[1].Activate(list);
+
+            if (fp.Equals("KG")) factory = new KgFactory();
+            if (fp.Equals("Funt")) factory = new FuntFactory();
+            if (fp.Equals("Gramm")) factory = new GrammFactory();
+
+            PName = sp;
+
+
+
         }
     }
 }
